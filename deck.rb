@@ -7,8 +7,8 @@ class Deck
   end
   
   def construct_deck
-    suits = ["clubs", "diamonds", "hearts", "spades"]
-    ranks = ["Jack", "Queen", "King"]
+    suits = %w{clubs diamonds hearts spades}
+    ranks = %w{jack queen king}
     suits.each do |suit|
       ranks.each do |rank|
         @cards << Card.new(suit, rank, 10)
