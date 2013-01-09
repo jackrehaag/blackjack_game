@@ -13,7 +13,10 @@ describe Hand do
   end
   
   it "should minus 10 from the total for each ace when bust" do
-    p @hand.cards
+    @hand.cards << Card.new("Diamonds", "Ace", 11)
+    @hand.cards << Card.new("Clubs", "6", 6)
+    @hand.cards << Card.new("Clubs", "5", 5)
+    @hand.value.should == 12
   end
   
   it "should change status to bust when hand value is more than 21" do
@@ -30,7 +33,6 @@ describe Hand do
     @hand.cards << Card.new("Clubs", "5", 5)
     
     @hand.status.should == "Blackjack"
-    p @hand.value
   end
   
   it "should work out the value of the hand" do
