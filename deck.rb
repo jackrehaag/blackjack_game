@@ -11,16 +11,16 @@ class Deck
     ranks = %w{jack queen king}
     suits.each do |suit|
       ranks.each do |rank|
-        @cards << Card.new(suit, rank, 10)
+        @cards << Card.new(suit, rank, 10, 10)
       end
-      @cards << Card.new(suit, "Ace", 11)
+      @cards << Card.new(suit, "Ace", 11, 1)
       (2..10).each do |x|
-        @cards << Card.new(suit, x.to_s, x)  
+        @cards << Card.new(suit, x.to_s, x, x)  
       end
     end
   end
   
-  def deal_card
-    @cards.shift
+  def deal_card(hand)
+    hand.receive @cards.shift
   end
 end

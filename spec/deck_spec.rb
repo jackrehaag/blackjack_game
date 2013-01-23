@@ -1,8 +1,4 @@
-require 'rubygems'
-require 'rspec'
-
-require File.join(File.dirname(__FILE__), '../deck')
-require File.join(File.dirname(__FILE__), '../card')
+require 'spec_helper'
 
 describe Deck do
   before do
@@ -13,17 +9,6 @@ describe Deck do
     @deck.cards.each do |card|
       p card.rank + " of " + card.suit
     end
-  end
-  
-  it "should remove the card from the deck when dealt" do
-    @deck.deal_card
-    @deck.cards.count.should == 51
-  end
-  
-  it "should pick a card at random from the deck" do
-    card_1 = @deck.deal_card
-    card_2 = @deck.deal_card
-    card_1.should_not == card_2
   end
   
 end

@@ -6,7 +6,7 @@ class Hand
   end
   
   def status
-    if self.value == 21
+    if value == 21
       return "Blackjack"
     elsif value > 21
       return "Bust"
@@ -15,17 +15,19 @@ class Hand
     end
   end
   
+  def receive(card)
+    @cards << card
+  end
+  
   def value
-    x = 0
-    aces = 0
-    @cards.each do |card|
-      x = x + card.value
-    end
-    if x > 21
-      ranks = @cards.map { |c| c.rank }
-      aces = ranks.grep("Ace").size
-      x = x - (aces * 10)
-    end
-    return x
+    high_value > 21 ? low_value : high_value
+  end
+  
+  def high_value
+    @cards.inject(0) { |x, c| x + c.high_value }
+  end
+  
+  def low_value
+    @cards.inject(0) { |x, c| x + c.low_value }
   end
 end

@@ -1,8 +1,9 @@
 class Card
-  attr_accessor :suit, :rank, :value
-  def initialize(suit, rank, value)
+  attr_accessor :suit, :rank, :high_value, :low_value
+  def initialize(suit, rank, high_value, low_value)
     @suit = suit
     @rank = rank
-    @value = value
+    @high_value = high_value
+    @low_value = low_value
   end
 end
