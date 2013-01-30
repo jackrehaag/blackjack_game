@@ -1,5 +1,5 @@
 class Player
-  attr_accessor :name, :score, :hand
+  attr_accessor :name, :score, :hand, :player_number
   
   def initialize(options={})
     @player_number = options[:player_number]
@@ -20,12 +20,22 @@ class Player
     @game.deck.deal_card(@hand)
   end
   
+  def stand
+    return "#{self.name} stood on #{self.hand.value}"
+  end
+  
+  def quit
+    @game.players.delete("John")
+  end
+  
   def turn
     if @hand.status == "Open"
       answer = (Highline.ask "Would you like to Hit or Stand?", String).downcase
       if answer == "hit"
         hit
         turn
+      elsif answer == "stand"
+        print stand
       end
     else
       print @hand.status
