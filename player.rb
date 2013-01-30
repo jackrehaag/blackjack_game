@@ -18,6 +18,7 @@ class Player
   
   def hit
     @game.deck.deal_card(@hand)
+    print "#{@name} has hit to reveal #{@hand.cards.last}, #{@name} now has #{@hand.value}"
   end
   
   def stand

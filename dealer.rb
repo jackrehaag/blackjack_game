@@ -1,22 +1,13 @@
 class Dealer < Player
-
+    
   def initialize(options={})
     @game = options[:game]
     @name = "Dealer"
     @hand = Hand.new
   end
-
-  def hit
-    @game.deck.deal_card(@hand)
-    print "Dealer has hit to reveal #{@hand.cards.last}, Dealer now has #{@hand.value}"
-  end
-
-  def stand
-    "#{@name} stood on #{@hand.value}"
-  end
-
+  
   def turn
-    scores = @game.player.map { |p| p.hand.value}
+    scores = @game.players.map { |p| p.hand.value}
     high_score = scores.order.last
     
     if @hand.status == "Open"
