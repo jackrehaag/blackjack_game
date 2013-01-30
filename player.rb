@@ -30,12 +30,14 @@ class Player
   
   def turn
     if @hand.status == "Open"
-      answer = (Highline.ask "Would you like to Hit or Stand?", String).downcase
+      answer = (Highline.ask "Would you like to Hit, Stand or Quit?", String).downcase
       if answer == "hit"
         hit
         turn
       elsif answer == "stand"
         print stand
+      elsif answer == "quit"
+        quit
       end
     else
       print @hand.status
