@@ -18,7 +18,7 @@ describe Game do
     
   end
   
-  pending "makes sure that a new deck is used when the old one is empty" do
+  pending "makes sure that the deck is shuffled at the end of each play" do
     
   end
 end
