@@ -6,6 +6,7 @@ require File.join(File.dirname(__FILE__), 'deck')
 require File.join(File.dirname(__FILE__), 'card')
 require File.join(File.dirname(__FILE__), 'player')
 require File.join(File.dirname(__FILE__), 'hand')
+require File.join(File.dirname(__FILE__), 'dealer')
 
 class Game
   attr_accessor :players, :deck
@@ -28,10 +29,13 @@ class Game
   
   def round
     @players.each do |player|
+      # Deal player cards
       player.turn
     end
-    
+    # Dealer logic
+    # award points to players
     # reset deck
+    # restart round
   end
   
 end
