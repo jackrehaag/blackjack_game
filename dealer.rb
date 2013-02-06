@@ -7,15 +7,14 @@ class Dealer < Player
   end
   
   def turn
-    scores = @game.players.map { |p| p.hand.value}
-    high_score = scores.order.last
+    high_score = @game.highest_hand
     
     if @hand.status == "Open"
       if @hand.value > high_score
-        stand
+        print stand
       else
-        if @hand.value < 17 
-          hit
+        if @hand.value <= 17 
+          print hit
           turn
         elsif @hand.value > 17
           print stand

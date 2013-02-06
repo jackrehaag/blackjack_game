@@ -27,6 +27,11 @@ class Game
     HighLine.ask "How many players are there?", Integer
   end
   
+  def highest_hand
+    scores = @players.map { |p| p.hand.value}
+    high_score = scores.order.last
+  end
+  
   def round
     @players.each do |player|
       # Deal player cards

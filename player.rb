@@ -18,7 +18,7 @@ class Player
   
   def hit
     @game.deck.deal_card(@hand)
-    print "#{@name} has hit to reveal #{@hand.cards.last}, #{@name} now has #{@hand.value}"
+    return "#{@name} has hit to reveal #{@hand.cards.last}, #{@name} now has #{@hand.value}"
   end
   
   def stand
@@ -33,7 +33,7 @@ class Player
     if @hand.status == "Open"
       answer = (Highline.ask "Would you like to Hit, Stand or Quit?", String).downcase
       if answer == "hit"
-        hit
+        print hit
         turn
       elsif answer == "stand"
         print stand
