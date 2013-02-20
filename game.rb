@@ -50,7 +50,7 @@ class Game
     @players.each do |player|
       if player.hand.value > @dealer.hand.value && player.hand.value < 22
         player.score += 1
-        print "#{player.name} has beaten the dealer's score of #{@dealer.hand.value} with #{player.hand.value}"
+        HighLine.say("#{player.name} has beaten the dealer's score of #{@dealer.hand.value} with #{player.hand.value}")
         player.hand = []
       end
     end
@@ -59,7 +59,7 @@ class Game
   def show_player_scores
     puts "At the end of that round the scores are:"
     @players.each do |player|
-      puts "#{player.name}: #{player.score}"
+      HighLine.say("#{player.name}: #{player.score}")
     end
   end
   

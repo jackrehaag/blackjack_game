@@ -44,7 +44,8 @@ describe Player do
     @player.hand.cards << Card.new("Hearts", "Jack", 10, 10)
     @player.hand.cards << Card.new("Clubs", "Jack", 10, 10)
     @player.hand.cards << Card.new("Hearts", "Ace", 1, 11)
-    @player.should_receive(:message).with("Blackjack")
+    HighLine.should_receive(:say).with("Blackjack")
+    @player.turn
   end
   
   pending "stops players from having the same name" do

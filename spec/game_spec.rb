@@ -21,6 +21,9 @@ describe Game do
   pending "makes sure that a new deck is used at the end of each play" do
   end
   
+  pending "shows the player scores at the end of the round" do
+  end
+  
   it "checks that points are awarded" do
     @game.players.first.score.should == 0
     @game.players.each do |player|
@@ -28,6 +31,7 @@ describe Game do
       player.hand.cards << Card.new("Clubs", "7", 7, 7)
     end
     @game.dealer.hand.cards << Card.new("Diamonds", "Queen", 10, 10)
+    HighLine.should_receive(:say).with("John has beaten the dealer's score of 10 with 17").twice
     @game.award_points
     @game.players.first.score.should == 1
   end

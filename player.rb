@@ -51,7 +51,7 @@ class Player
         quit
       end
     else
-      print @hand.status
+      HighLine.say("#{@hand.status}")
     end
   end
   

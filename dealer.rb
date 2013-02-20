@@ -11,17 +11,17 @@ class Dealer < Player
     
     if @hand.status == "Open"
       if @hand.value > high_score
-        print stand
+        HighLine.say stand
       else
         if @hand.value <= 17 
-          print hit
+          HighLine.say hit
           turn
         elsif @hand.value > 17
-          print stand
+          HighLine.say stand
         end
       end
     else
-      print @hand.status
+      HighLine.say("#{@hand.status}")
     end
   end
 
