@@ -21,12 +21,21 @@ class Player
     return "#{@name} has hit to reveal #{@hand.cards.last}, #{@name} now has #{@hand.value}"
   end
   
+  def take_two
+    @game.deck.deal_card(@hand)
+    @game.deck.deal_card(@hand)
+  end
+  
   def stand
     return "#{self.name} stood on #{self.hand.value}"
   end
   
   def quit
-    @game.players.delete("John")
+    if @game.players.count == 1
+      @game = nil
+    else
+      @game.players.delete(self)
+    end
   end
   
   def turn
