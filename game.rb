@@ -9,10 +9,11 @@ require File.join(File.dirname(__FILE__), 'hand')
 require File.join(File.dirname(__FILE__), 'dealer')
 
 class Game
-  attr_accessor :players, :deck
+  attr_accessor :players, :deck, :dealer
   def initialize
     @players = []
     @deck = Deck.new
+    @dealer = Dealer.new
   end
   
   def start
