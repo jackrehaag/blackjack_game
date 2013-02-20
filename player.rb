@@ -6,6 +6,7 @@ class Player
     @game = options[:game]
     @name = ""
     @hand = Hand.new
+    @score = 0
   end
   
   def set_player_name

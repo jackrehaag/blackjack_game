@@ -47,9 +47,9 @@ class Game
   
   def award_points
     @players.each do |player|
-      if player.hand.score > @dealer.hand.score && player.hand.score < 22
+      if player.hand.value > @dealer.hand.value && player.hand.value < 22
         player.score += 1
-        print "#{player.name} has beaten the dealer's score of #{@dealer.hand.score} with #{player.hand.score}"
+        print "#{player.name} has beaten the dealer's score of #{@dealer.hand.value} with #{player.hand.value}"
         player.hand = []
       end
     end

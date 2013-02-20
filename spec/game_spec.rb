@@ -22,11 +22,12 @@ describe Game do
   end
   
   it "checks that points are awarded" do
+    @game.players.first.score.should == 0
     @game.players.each do |player|
       player.hand.cards << Card.new("Hearts", "Jack", 10, 10)
       player.hand.cards << Card.new("Clubs", "7", 7, 7)
     end
-    @game.dealer << Card.new("Diamonds", "Queen", 10, 10)
+    @game.dealer.hand.cards << Card.new("Diamonds", "Queen", 10, 10)
     @game.award_points
     @game.players.first.score.should == 1
   end
