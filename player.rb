@@ -34,7 +34,9 @@ class Player
   def quit
     if @game.players.count == 1
       @game = nil
+      HighLine.say("The game has been terminated")
     else
+      HighLine.say("#{self.name} has quit the game")
       @game.players.delete(self)
     end
   end
@@ -43,10 +45,10 @@ class Player
     if @hand.status == "Open"
       answer = (Highline.ask "Would you like to Hit, Stand or Quit?", String).downcase
       if answer == "hit"
-        print hit
+        HighLine.say hit
         turn
       elsif answer == "stand"
-        print stand
+        HighLine.say stand
       elsif answer == "quit"
         quit
       end

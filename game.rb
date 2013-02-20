@@ -57,7 +57,7 @@ class Game
   end
   
   def show_player_scores
-    puts "At the end of that round the scores are:"
+    HighLine.say("At the end of that round the scores are:")
     @players.each do |player|
       HighLine.say("#{player.name}: #{player.score}")
     end
