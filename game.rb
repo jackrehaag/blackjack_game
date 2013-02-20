@@ -43,6 +43,7 @@ class Game
     @dealer.turn
     award_points
     @deck = Deck.new # reset deck
+    show_player_scores
   end
   
   def award_points
@@ -52,6 +53,13 @@ class Game
         print "#{player.name} has beaten the dealer's score of #{@dealer.hand.value} with #{player.hand.value}"
         player.hand = []
       end
+    end
+  end
+  
+  def show_player_scores
+    puts "At the end of that round the scores are:"
+    @players.each do |player|
+      puts "#{player.name}: #{player.score}"
     end
   end
   
