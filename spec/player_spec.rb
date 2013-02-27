@@ -27,6 +27,16 @@ describe Player do
     # Need to sort same name issue
   end
   
+  it "checks that the players name and hand is announced on their turn" do
+    @player.hand.cards << Card.new("Clubs", "2", 2, 2)
+    @player.hand.cards << Card.new("Hearts", "Ace", 1, 11)
+    HighLine.should_receive(:say).with("John its your turn, your hand currently contains:")
+    HighLine.should_receive(:say).with("the #{@player.hand.cards.first.rank} of #{@player.hand.cards.first.suit}")
+    HighLine.should_receive(:say).with("the #{@player.hand.cards.last.rank} of #{@player.hand.cards.last.suit}")
+    @player.stub(:ask_player_action).with {"stand"}
+    @player.turn
+  end
+  
   it "should allow the player to hit" do
     expect { @player.hit }.to change{ @player.hand.cards.count }.from(0).to(1)
   end

@@ -31,6 +31,10 @@ class Player
     return "#{self.name} stood on #{self.hand.value}"
   end
   
+  def ask_player_action
+    (HighLine.ask "Would you like to Hit, Stand or Quit?", String).downcase
+  end
+  
   def quit
     if @game.players.count == 1
       HighLine.say("The game has been terminated")
@@ -43,7 +47,11 @@ class Player
   
   def turn
     if @hand.status == "Open"
-      answer = (Highline.ask "Would you like to Hit, Stand or Quit?", String).downcase
+      HighLine.say("#{@name} its your turn, your hand currently contains:")
+      @hand.cards.each do |card|
+        HighLine.say("the #{card.rank} of #{card.suit}")
+      end
+      answer = ask_player_action
       if answer == "hit"
         HighLine.say hit
         turn
