@@ -13,7 +13,7 @@ class Game
   def initialize
     @players = []
     @deck = Deck.new
-    @dealer = Dealer.new
+    @dealer = Dealer.new(:game => self)
   end
   
   def start
