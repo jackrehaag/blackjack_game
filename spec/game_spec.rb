@@ -25,10 +25,7 @@ describe Game do
   end
   
   it "checks that award_points resets the players hand" do
-    @game.players.each do |player|
-      player.hand.cards << Card.new("Hearts", "Jack", 10, 10)
-      player.hand.cards << Card.new("Clubs", "7", 7, 7)
-    end
+    give_cards_under_21(@game.players)
     @game.award_points
     @game.players.first.hand.cards.count.should == 0
     
@@ -43,10 +40,7 @@ describe Game do
 
   it "checks that points are awarded" do
     @game.players.first.score.should == 0
-    @game.players.each do |player|
-      player.hand.cards << Card.new("Hearts", "Jack", 10, 10)
-      player.hand.cards << Card.new("Clubs", "7", 7, 7)
-    end
+    give_cards_under_21(@game.players)
     @game.dealer.hand.cards << Card.new("Diamonds", "Queen", 10, 10)
     HighLine.should_receive(:say).with("John has beaten the dealer's score of 10 with 17").twice
     @game.award_points
@@ -55,10 +49,7 @@ describe Game do
   
   it "checks that points are awarded if the dealer is bust" do
     @game.players.first.score.should == 0
-    @game.players.each do |player|
-      player.hand.cards << Card.new("Hearts", "Jack", 10, 10)
-      player.hand.cards << Card.new("Clubs", "7", 7, 7)
-    end
+    give_cards_under_21(@game.players)
     @game.dealer.hand.cards << Card.new("Diamonds", "Queen", 10, 10)
     @game.dealer.hand.cards << Card.new("Clubs", "Queen", 10, 10)
     @game.dealer.hand.cards << Card.new("Hearts", "Queen", 10, 10)
