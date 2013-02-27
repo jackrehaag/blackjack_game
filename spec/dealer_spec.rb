@@ -6,7 +6,7 @@ describe Dealer do
     @game = Game.new
     @game.stub(:ask_player_count) { 2 }
     Player.any_instance.stub(:ask_player_name) {'John'}
-    @dealer = Dealer.new(:game => @game)
+    @dealer = @game.dealer
     @game.start
   end
   
