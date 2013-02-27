@@ -28,8 +28,6 @@ describe Game do
     give_cards_under_21(@game.players)
     @game.award_points
     @game.players.first.hand.cards.count.should == 0
-    
-    # PUT IN HELPER
   end
   
   it "checks that award_points resets the dealers hand" do
@@ -50,9 +48,7 @@ describe Game do
   it "checks that points are awarded if the dealer is bust" do
     @game.players.first.score.should == 0
     give_cards_under_21(@game.players)
-    @game.dealer.hand.cards << Card.new("Diamonds", "Queen", 10, 10)
-    @game.dealer.hand.cards << Card.new("Clubs", "Queen", 10, 10)
-    @game.dealer.hand.cards << Card.new("Hearts", "Queen", 10, 10)
+    give_cards_over_21([@game.dealer])
     @game.award_points
     @game.players.first.score.should == 1
   end
