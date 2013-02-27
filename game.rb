@@ -44,7 +44,6 @@ class Game
     award_points
     @deck = Deck.new # reset deck
     show_player_scores
-    round
   end
   
   def award_points

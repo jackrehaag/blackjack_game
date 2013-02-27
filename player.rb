@@ -19,7 +19,7 @@ class Player
   
   def hit
     @game.deck.deal_card(@hand)
-    return "#{@name} has hit to reveal #{@hand.cards.last}, #{@name} now has #{@hand.value}"
+    return "#{@name} has hit to reveal #{@hand.cards.last.rank} of #{@hand.cards.last.suit}, #{@name} now has #{@hand.value}"
   end
   
   def take_two

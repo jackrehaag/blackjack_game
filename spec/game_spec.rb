@@ -12,10 +12,10 @@ describe Game do
     @game.players.count.should == 2
   end
 
-  pending "makes sure a game ends when the last player leaves" do
-    @game.players.each do |player|
-      player.quit
-    end
+  it "makes sure a game ends when the last player leaves" do
+    @game.players.first.quit
+    HighLine.should_receive(:say).with("The game has been terminated")
+    @game.players.first.quit
   end
 
   pending "makes sure that a new deck is used at the end of each play" do
