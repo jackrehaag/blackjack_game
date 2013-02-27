@@ -52,16 +52,16 @@ class Game
         if player.hand.value > @dealer.hand.value && player.hand.value < 22
           player.score += 1
           HighLine.say("#{player.name} has beaten the dealer's score of #{@dealer.hand.value} with #{player.hand.value}")
-          player.hand = []
         end
       else # Dealer has bust
         if player.hand.value < 22
           player.score += 1
           HighLine.say("The dealer has bust #{player.name} has beaten the dealer's score of #{@dealer.hand.value} with #{player.hand.value}")
-          player.hand = []
         end
       end
+      player.hand = Hand.new
     end
+    @dealer.hand = Hand.new
   end
   
   def show_player_scores

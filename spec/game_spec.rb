@@ -23,6 +23,23 @@ describe Game do
 
   pending "shows the player scores at the end of the round" do
   end
+  
+  it "checks that award_points resets the players hand" do
+    @game.players.each do |player|
+      player.hand.cards << Card.new("Hearts", "Jack", 10, 10)
+      player.hand.cards << Card.new("Clubs", "7", 7, 7)
+    end
+    @game.award_points
+    @game.players.first.hand.cards.count.should == 0
+    
+    # PUT IN HELPER
+  end
+  
+  it "checks that award_points resets the dealers hand" do
+    @game.dealer.hand.cards << Card.new("Clubs", "7", 7, 7)
+    @game.award_points
+    @game.dealer.hand.cards.count.should == 0
+  end
 
   it "checks that points are awarded" do
     @game.players.first.score.should == 0

@@ -24,15 +24,16 @@ describe Player do
     @game.players.count.should == 2
     @player.quit
     @game.players.count.should == 1
-    # Need to sort same name issue
   end
   
   it "checks that the players name and hand is announced on their turn" do
     @player.hand.cards << Card.new("Clubs", "2", 2, 2)
     @player.hand.cards << Card.new("Hearts", "Ace", 1, 11)
+    
     HighLine.should_receive(:say).with("John its your turn, your hand currently contains:")
     HighLine.should_receive(:say).with("the #{@player.hand.cards.first.rank} of #{@player.hand.cards.first.suit}")
     HighLine.should_receive(:say).with("the #{@player.hand.cards.last.rank} of #{@player.hand.cards.last.suit}")
+    
     @player.stub(:ask_player_action).with {"stand"}
     @player.turn
   end
@@ -49,12 +50,9 @@ describe Player do
     @player.hand.cards << Card.new("Hearts", "Jack", 10, 10)
     @player.hand.cards << Card.new("Clubs", "Jack", 10, 10)
     @player.hand.cards << Card.new("Hearts", "Ace", 1, 11)
+    
     HighLine.should_receive(:say).with("Blackjack")
     @player.turn
-  end
-  
-  pending "stops players from having the same name" do
-    
   end
   
 end
