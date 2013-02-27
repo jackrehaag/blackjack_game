@@ -44,14 +44,23 @@ class Game
     award_points
     @deck = Deck.new # reset deck
     show_player_scores
+    round
   end
   
   def award_points
     @players.each do |player|
-      if player.hand.value > @dealer.hand.value && player.hand.value < 22
-        player.score += 1
-        HighLine.say("#{player.name} has beaten the dealer's score of #{@dealer.hand.value} with #{player.hand.value}")
-        player.hand = []
+      if @dealer.hand.value < 22
+        if player.hand.value > @dealer.hand.value && player.hand.value < 22
+          player.score += 1
+          HighLine.say("#{player.name} has beaten the dealer's score of #{@dealer.hand.value} with #{player.hand.value}")
+          player.hand = []
+        end
+      else # Dealer has bust
+        if player.hand.value < 22
+          player.score += 1
+          HighLine.say("The dealer has bust #{player.name} has beaten the dealer's score of #{@dealer.hand.value} with #{player.hand.value}")
+          player.hand = []
+        end
       end
     end
   end
