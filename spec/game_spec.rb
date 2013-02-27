@@ -7,23 +7,23 @@ describe Game do
     Player.any_instance.stub(:ask_player_name) { "John" }
     @game.start
   end
-  
+
   it "makes sure that a game has at least one player" do
     @game.players.count.should == 2
   end
-  
-  it "makes sure a game ends when the last player leaves" do
-    @game.players[0].quit
-    @game.players[1].quit
-    @game.should == nil
+
+  pending "makes sure a game ends when the last player leaves" do
+    @game.players.each do |player|
+      player.quit
+    end
   end
-  
+
   pending "makes sure that a new deck is used at the end of each play" do
   end
-  
+
   pending "shows the player scores at the end of the round" do
   end
-  
+
   it "checks that points are awarded" do
     @game.players.first.score.should == 0
     @game.players.each do |player|

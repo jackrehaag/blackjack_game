@@ -33,8 +33,8 @@ class Player
   
   def quit
     if @game.players.count == 1
-      @game = nil
       HighLine.say("The game has been terminated")
+      exit
     else
       HighLine.say("#{self.name} has quit the game")
       @game.players.delete(self)

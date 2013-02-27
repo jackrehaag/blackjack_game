@@ -20,15 +20,10 @@ describe Player do
     expect { @player.take_two }.to change{ @player.hand.cards.count }.from(0).to(2)
   end
   
-  pending "keeps the players score" do
-    
-  end
-  
   it "lets the player quit the game" do
     @game.players.count.should == 2
     @player.quit
     @game.players.count.should == 1
-    
     # Need to sort same name issue
   end
   
