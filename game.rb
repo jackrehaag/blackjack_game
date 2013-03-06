@@ -49,6 +49,10 @@ class Game
   
   def keep_playing
     @players.delete_if {|player| player.ask_to_play == "no"}
+    if @players.count <= 0
+      HighLine.say("The game has been terminated")
+      exit
+    end
   end
   
   def round_reset

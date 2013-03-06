@@ -11,17 +11,17 @@ describe Game do
   it "makes sure that a game has at least one player" do
     @game.players.count.should == 2
   end
-
-  pending "makes sure a game ends when the last player leaves" do
-    @game.players.first.quit
-    HighLine.should_receive(:say).with("The game has been terminated")
-    @game.players.first.quit
-  end
-
+  
   it "makes sure that a new deck is used at the end of each play" do
     first_deck = @game.deck
     @game.round_reset
     @game.deck.should_not === first_deck
+  end
+  
+  it "ends the when there are no players left" do
+    @game.players.count.should == 2
+    Player.any_instance.stub(:ask_to_play) {"no"}
+    expect {@game.keep_playing}.to raise_error SystemExit
   end
 
   it "shows the player scores" do
