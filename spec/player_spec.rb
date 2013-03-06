@@ -22,7 +22,9 @@ describe Player do
   
   it "lets the player quit the game" do
     @game.players.count.should == 2
-    @player.quit
+    @game.players.first.stub(:ask_to_play) {"no"}
+    @game.players.last.stub(:ask_to_play) {"yes"}
+    @game.keep_playing
     @game.players.count.should == 1
   end
   

@@ -44,6 +44,11 @@ class Game
     award_points
     round_reset
     show_player_scores
+    keep_playing
+  end
+  
+  def keep_playing
+    @players.delete_if {|player| player.ask_to_play == "no"}
   end
   
   def round_reset

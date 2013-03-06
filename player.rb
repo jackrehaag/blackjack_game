@@ -32,18 +32,22 @@ class Player
   end
   
   def ask_player_action
-    (HighLine.ask "Would you like to Hit, Stand or Quit?", String).downcase
+    (HighLine.ask "#{self.name} Would you like to Hit or Stand?", String).downcase
   end
   
-  def quit
-    if @game.players.count == 1
-      HighLine.say("The game has been terminated")
-      exit
-    else
-      HighLine.say("#{self.name} has quit the game")
-      @game.players.delete(self)
-    end
+  def ask_to_play
+    (HighLine.ask "#{self.name} Would you like to continue playing?", String).downcase
   end
+  
+  # def quit
+  #   if @game.players.count == 1
+  #     HighLine.say("The game has been terminated")
+  #     exit
+  #   else
+  #     HighLine.say("#{self.name} has quit the game")
+  #     @game.players.delete(self)
+  #   end
+  # end
   
   def process_answer(answer)
     if answer == "hit"
@@ -51,8 +55,8 @@ class Player
       turn
     elsif answer == "stand"
       HighLine.say stand
-    elsif answer == "quit"
-      quit
+    # elsif answer == "quit"
+    #   quit
     else
       return false
     end
