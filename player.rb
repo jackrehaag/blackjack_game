@@ -45,21 +45,28 @@ class Player
     end
   end
   
+  def player_action
+    answer = ask_player_action
+    if answer == "hit"
+      HighLine.say hit
+      turn
+    elsif answer == "stand"
+      HighLine.say stand
+    elsif answer == "quit"
+      quit
+    else
+      HighLine.say("Please enter a correct command")
+      player_action
+    end
+  end
+  
   def turn
     if @hand.status == "Open"
       HighLine.say("#{@name} its your turn, your hand currently contains:")
       @hand.cards.each do |card|
         HighLine.say("the #{card.rank} of #{card.suit}")
       end
-      answer = ask_player_action
-      if answer == "hit"
-        HighLine.say hit
-        turn
-      elsif answer == "stand"
-        HighLine.say stand
-      elsif answer == "quit"
-        quit
-      end
+      player_action
     else
       HighLine.say("#{@hand.status}")
     end
