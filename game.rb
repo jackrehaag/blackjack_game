@@ -42,8 +42,16 @@ class Game
     end
     @dealer.turn
     award_points
-    @deck = Deck.new # reset deck
+    round_reset
     show_player_scores
+  end
+  
+  def round_reset
+    @deck = Deck.new
+    @dealer.hand = Hand.new
+    @players.each do |player|
+      player.hand = Hand.new
+    end
   end
   
   def award_points
@@ -59,9 +67,7 @@ class Game
           HighLine.say("The dealer has bust #{player.name} has beaten the dealer's score of #{@dealer.hand.value} with #{player.hand.value}")
         end
       end
-      player.hand = Hand.new
     end
-    @dealer.hand = Hand.new
   end
   
   def show_player_scores

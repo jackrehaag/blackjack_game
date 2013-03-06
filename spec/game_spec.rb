@@ -12,27 +12,36 @@ describe Game do
     @game.players.count.should == 2
   end
 
-  it "makes sure a game ends when the last player leaves" do
+  pending "makes sure a game ends when the last player leaves" do
     @game.players.first.quit
     HighLine.should_receive(:say).with("The game has been terminated")
     @game.players.first.quit
   end
 
-  pending "makes sure that a new deck is used at the end of each play" do
+  it "makes sure that a new deck is used at the end of each play" do
+    first_deck = @game.deck
+    @game.round_reset
+    @game.deck.should_not === first_deck
   end
 
-  pending "shows the player scores at the end of the round" do
+  it "shows the player scores" do
+    @game.players.each do |player|
+      player.score = 2
+    end
+    HighLine.should_receive(:say).with("At the end of that round the scores are:")
+    HighLine.should_receive(:say).with("John: 2").twice
+    @game.show_player_scores
   end
   
-  it "checks that award_points resets the players hand" do
+  it "checks that round_reset resets the players hand" do
     give_cards_under_21(@game.players)
-    @game.award_points
+    @game.round_reset
     @game.players.first.hand.cards.count.should == 0
   end
   
-  it "checks that award_points resets the dealers hand" do
+  it "checks that round_reset resets the dealers hand" do
     @game.dealer.hand.cards << Card.new("Clubs", "7", 7, 7)
-    @game.award_points
+    @game.round_reset
     @game.dealer.hand.cards.count.should == 0
   end
 
