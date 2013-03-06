@@ -45,8 +45,7 @@ class Player
     end
   end
   
-  def player_action
-    answer = ask_player_action
+  def process_answer(answer)
     if answer == "hit"
       HighLine.say hit
       turn
@@ -55,6 +54,13 @@ class Player
     elsif answer == "quit"
       quit
     else
+      return false
+    end
+  end
+  
+  def player_action
+    answer = ask_player_action
+    if process_answer(answer) == false
       HighLine.say("Please enter a correct command")
       player_action
     end

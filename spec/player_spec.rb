@@ -34,7 +34,7 @@ describe Player do
     HighLine.should_receive(:say).with("the #{@player.hand.cards.first.rank} of #{@player.hand.cards.first.suit}")
     HighLine.should_receive(:say).with("the #{@player.hand.cards.last.rank} of #{@player.hand.cards.last.suit}")
     
-    @player.stub(:ask_player_action).with {"stand"}
+    @player.stub(:player_action).with {"stand"}
     @player.turn
   end
   
@@ -44,6 +44,10 @@ describe Player do
   
   it "should allow the player to stand" do
     @player.stand.should == "John stood on 0"
+  end
+  
+  it "checks that the players input is correct" do
+    @player.process_answer("incorrect answer").should == false
   end
   
   it "should not ask the player to hit if hand is 21 or above" do
